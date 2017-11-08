@@ -55,11 +55,11 @@ class Instagram
     public function get(string $user): array
     {
         try {
-            $url = sprintf('https://www.instagram.com/%s/media', $user);
+            $url = sprintf('https://api.instagram.com/v1/users/self/media/recent?access_token=%s', $user);
 
             $response = $this->client->get($url);
 
-            return json_decode((string) $response->getBody(), true)['items'];
+            return json_decode((string) $response->getBody())->data;
         } catch (RequestException $e) {
             throw new InstagramException(sprintf('The user [%s] was not found.', $user));
         }
