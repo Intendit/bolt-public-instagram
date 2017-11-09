@@ -61,7 +61,7 @@ class Instagram
 
             return json_decode((string) $response->getBody())->data;
         } catch (RequestException $e) {
-            throw new InstagramException(sprintf('The user [%s] was not found.', $user));
+            return array('The user was not found.');
         }
     }
 }
