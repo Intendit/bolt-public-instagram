@@ -1,5 +1,5 @@
 {
-    "name": "zomars/instagram",
+    "name": "santinopetrovic/instagram",
     "description": "Get raw feed data from Instagram's public API",
     "type": "bolt-extension",
     "keywords": [
