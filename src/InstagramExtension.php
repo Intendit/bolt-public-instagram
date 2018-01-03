@@ -19,6 +19,8 @@ class InstagramExtension extends SimpleExtension
     {
         return [
             'instagram' => 'instagramTwigFunction',
+            'instagrammediatoken' => 'instagramMediaTokenTwigFunction',
+            'instagramtagstoken' => 'instagramTagsTokenTwigFunction',
         ];
     }
 
@@ -34,6 +36,30 @@ class InstagramExtension extends SimpleExtension
 
         // Fetch the media feed.
         $data = $instagram->get($user);
+
+        return $data;
+    }
+
+    public function instagramMediaTokenTwigFunction($token, $limit)
+    {
+
+        // Create a new instagram instance.
+        $instagram = new Instagram();
+
+        // Fetch the media feed.
+        $data = $instagram->getMediaToken($token, $limit);
+
+        return $data;
+    }
+
+    public function instagramTagsTokenTwigFunction($tag, $token, $limit)
+    {
+
+        // Create a new instagram instance.
+        $instagram = new Instagram();
+
+        // Fetch the media feed.
+        $data = $instagram->getTagToken($tag, $token, $limit);
 
         return $data;
     }

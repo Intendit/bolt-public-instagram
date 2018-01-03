@@ -64,4 +64,30 @@ class Instagram
             return array('errorinstagram' => 'The user was not found.');
         }
     }
+
+    public function getMediaToken(string $token, string $limit): array
+    {
+        try {
+            $url = sprintf('https://api.instagram.com/v1/users/self/media/recent?access_token=%s&count=%s', $token, $limit);
+
+            $response = $this->client->get($url);
+
+            return json_decode((string) $response->getBody(), true)['data'];
+        } catch (RequestException $e) {
+            return array('errorinstagram' => 'Invalid token or limit.');
+        }
+    }
+
+    public function getTagToken(string $tag, string $token, string $limit): array
+    {
+        try {
+            $url = sprintf('https://api.instagram.com/v1/tags/%s/media/recent?access_token=%s&count=%s', $tag, $token, $limit);
+
+            $response = $this->client->get($url);
+
+            return json_decode((string) $response->getBody(), true)['data'];
+        } catch (RequestException $e) {
+            return array('errorinstagram' => 'Invalid token, tag or limit.');
+        }
+    }
 }
