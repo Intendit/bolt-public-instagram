@@ -21,6 +21,7 @@ class InstagramExtension extends SimpleExtension
             'instagram' => 'instagramTwigFunction',
             'instagrammediatoken' => 'instagramMediaTokenTwigFunction',
             'instagramtagstoken' => 'instagramTagsTokenTwigFunction',
+            'instagramlocationtoken' => 'instagramLocationTokenTwigFunction',
         ];
     }
 
@@ -63,5 +64,17 @@ class InstagramExtension extends SimpleExtension
 
         return $data;
     }
+
+    public function instagramLocationTokenTwigFunction($location, $token, $limit)
+    {
+
+        // Create a new instagram instance.
+        $instagram = new Instagram();
+
+        // Fetch the media feed.
+        $data = $instagram->getLocationToken($location, $token, $limit);
+
+        return $data;
+    }    
 
 }

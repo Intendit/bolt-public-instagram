@@ -59,7 +59,7 @@ class Instagram
 
             $response = $this->client->get($url);
 
-            return json_decode((string) $response->getBody(), true)['user']['media']['nodes'];
+            return json_decode((string) $response->getBody(), true)['graphql']['user']['edge_owner_to_timeline_media']['edges'];
         } catch (RequestException $e) {
             return array('errorinstagram' => 'The user was not found.');
         }
@@ -90,4 +90,17 @@ class Instagram
             return array('errorinstagram' => 'Invalid token, tag or limit.');
         }
     }
+
+    public function getLocationToken(string $location, string $token, string $limit): array
+    {
+        try {
+            $url = sprintf('https://api.instagram.com/v1/locations/%s/media/recent?access_token=%s&count=%s', $location, $token, $limit);
+
+            $response = $this->client->get($url);
+
+            return json_decode((string) $response->getBody(), true)['data'];
+        } catch (RequestException $e) {
+            return array('errorinstagram' => 'Invalid token, tag or limit.');
+        }
+    }    
 }
