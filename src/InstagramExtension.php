@@ -40,6 +40,16 @@ class InstagramExtension extends SimpleExtension
         // Fetch the media feed.
         $data = $instagram->get($user);
 
+        $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
+        if (!isset($data["errorinstagram"])) {
+            // Write temporary content to the file, so if the instagram crashes, the content will be here.
+            file_put_contents($path.'instagram-temp.json', json_encode($data));
+            return $data;
+        } else {
+            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+            return $instagramTemp;
+
+        }        
         return $data;
     }
 
@@ -52,6 +62,16 @@ class InstagramExtension extends SimpleExtension
         // Fetch the media feed.
         $data = $instagram->getMediaToken($token, $limit);
 
+        $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
+        if (!isset($data["errorinstagram"])) {
+            // Write temporary content to the file, so if the instagram crashes, the content will be here.
+            file_put_contents($path.'instagram-temp.json', json_encode($data));
+            return $data;
+        } else {
+            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+            return $instagramTemp;
+
+        }        
         return $data;
     }
 
@@ -64,6 +84,16 @@ class InstagramExtension extends SimpleExtension
         // Fetch the media feed.
         $data = $instagram->getMediaTokenIntendit($token, $limit);
 
+        $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
+        if (!isset($data["errorinstagram"])) {
+            // Write temporary content to the file, so if the instagram crashes, the content will be here.
+            file_put_contents($path.'instagram-temp.json', json_encode($data));
+            return $data;
+        } else {
+            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+            return $instagramTemp;
+
+        }        
         return $data;
     } 
 
@@ -76,7 +106,16 @@ class InstagramExtension extends SimpleExtension
         // Fetch the media feed.
         $data = $instagram->getGraphToken($token, $limit);
 
-        return $data;
+        $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
+        if (!isset($data["errorinstagram"])) {
+            // Write temporary content to the file, so if the instagram crashes, the content will be here.
+            file_put_contents($path.'instagram-temp.json', json_encode($data));
+            return $data;
+        } else {
+            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+            return $instagramTemp;
+
+        }
     }    
     
     public function instagramTagsTokenTwigFunction($tag, $token, $limit)
@@ -88,6 +127,16 @@ class InstagramExtension extends SimpleExtension
         // Fetch the media feed.
         $data = $instagram->getTagToken($tag, $token, $limit);
 
+        $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
+        if (!isset($data["errorinstagram"])) {
+            // Write temporary content to the file, so if the instagram crashes, the content will be here.
+            file_put_contents($path.'instagram-temp.json', json_encode($data));
+            return $data;
+        } else {
+            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+            return $instagramTemp;
+
+        }        
         return $data;
     }
 
@@ -100,6 +149,16 @@ class InstagramExtension extends SimpleExtension
         // Fetch the media feed.
         $data = $instagram->getLocationToken($location, $token, $limit);
 
+        $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
+        if (!isset($data["errorinstagram"])) {
+            // Write temporary content to the file, so if the instagram crashes, the content will be here.
+            file_put_contents($path.'instagram-temp.json', json_encode($data));
+            return $data;
+        } else {
+            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+            return $instagramTemp;
+
+        }        
         return $data;
     }    
 
