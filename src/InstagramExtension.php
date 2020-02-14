@@ -49,8 +49,7 @@ class InstagramExtension extends SimpleExtension
             $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
             return $instagramTemp;
 
-        }        
-        return $data;
+        }
     }
 
     public function instagramMediaTokenTwigFunction($token, $limit)
@@ -71,8 +70,7 @@ class InstagramExtension extends SimpleExtension
             $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
             return $instagramTemp;
 
-        }        
-        return $data;
+        }
     }
 
     public function instagramMediaTokenIntenditTwigFunction($token, $limit)
@@ -93,8 +91,7 @@ class InstagramExtension extends SimpleExtension
             $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
             return $instagramTemp;
 
-        }        
-        return $data;
+        }
     } 
 
     public function instagramGraphTokenTwigFunction($token, $limit)
@@ -136,8 +133,7 @@ class InstagramExtension extends SimpleExtension
             $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
             return $instagramTemp;
 
-        }        
-        return $data;
+        }
     }
 
     public function instagramLocationTokenTwigFunction($location, $token, $limit)
@@ -158,8 +154,7 @@ class InstagramExtension extends SimpleExtension
             $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
             return $instagramTemp;
 
-        }        
-        return $data;
+        }
     }    
 
 }
