@@ -46,8 +46,12 @@ class InstagramExtension extends SimpleExtension
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
         } else {
-            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
-            return $instagramTemp;
+            if (file_exists($path.'instagram-temp.json')) {
+                $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+                return $instagramTemp;
+            } else {
+                return $data;
+            }
 
         }
     }
@@ -67,8 +71,12 @@ class InstagramExtension extends SimpleExtension
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
         } else {
-            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
-            return $instagramTemp;
+            if (file_exists($path.'instagram-temp.json')) {
+                $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+                return $instagramTemp;
+            } else {
+                return $data;
+            }
 
         }
     }
@@ -88,8 +96,12 @@ class InstagramExtension extends SimpleExtension
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
         } else {
-            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
-            return $instagramTemp;
+            if (file_exists($path.'instagram-temp.json')) {
+                $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+                return $instagramTemp;
+            } else {
+                return $data;
+            }
 
         }
     } 
@@ -109,8 +121,12 @@ class InstagramExtension extends SimpleExtension
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
         } else {
-            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
-            return $instagramTemp;
+            if (file_exists($path.'instagram-temp.json')) {
+                $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+                return $instagramTemp;
+            } else {
+                return $data;
+            }
 
         }
     }    
@@ -130,8 +146,12 @@ class InstagramExtension extends SimpleExtension
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
         } else {
-            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
-            return $instagramTemp;
+            if (file_exists($path.'instagram-temp.json')) {
+                $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+                return $instagramTemp;
+            } else {
+                return $data;
+            }
 
         }
     }
@@ -151,9 +171,12 @@ class InstagramExtension extends SimpleExtension
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
         } else {
-            $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
-            return $instagramTemp;
-
+            if (file_exists($path.'instagram-temp.json')) {
+                $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+                return $instagramTemp;
+            } else {
+                return $data;
+            }
         }
     }    
 
