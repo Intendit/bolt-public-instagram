@@ -41,7 +41,7 @@ class InstagramExtension extends SimpleExtension
         $data = $instagram->get($user);
 
         $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
-        if (!isset($data["errorinstagram"])) {
+        if (!isset($data["errorinstagram"]) && isset($data) && is_array($data) && !empty($data)) {
             // Write temporary content to the file, so if the instagram crashes, the content will be here.
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
@@ -62,7 +62,7 @@ class InstagramExtension extends SimpleExtension
         $data = $instagram->getMediaToken($token, $limit);
 
         $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
-        if (!isset($data["errorinstagram"])) {
+        if (!isset($data["errorinstagram"]) && isset($data) && is_array($data) && !empty($data)) {
             // Write temporary content to the file, so if the instagram crashes, the content will be here.
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
@@ -83,7 +83,7 @@ class InstagramExtension extends SimpleExtension
         $data = $instagram->getMediaTokenIntendit($token, $limit);
 
         $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
-        if (!isset($data["errorinstagram"])) {
+        if (!isset($data["errorinstagram"]) && isset($data) && is_array($data) && !empty($data)) {
             // Write temporary content to the file, so if the instagram crashes, the content will be here.
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
@@ -104,7 +104,7 @@ class InstagramExtension extends SimpleExtension
         $data = $instagram->getGraphToken($token, $limit);
 
         $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
-        if (!isset($data["errorinstagram"])) {
+        if (!isset($data["errorinstagram"]) && isset($data) && is_array($data) && !empty($data)) {
             // Write temporary content to the file, so if the instagram crashes, the content will be here.
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
@@ -125,7 +125,7 @@ class InstagramExtension extends SimpleExtension
         $data = $instagram->getTagToken($tag, $token, $limit);
 
         $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
-        if (!isset($data["errorinstagram"])) {
+        if (!isset($data["errorinstagram"]) && isset($data) && is_array($data) && !empty($data)) {
             // Write temporary content to the file, so if the instagram crashes, the content will be here.
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
@@ -146,7 +146,7 @@ class InstagramExtension extends SimpleExtension
         $data = $instagram->getLocationToken($location, $token, $limit);
 
         $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
-        if (!isset($data["errorinstagram"])) {
+        if (!isset($data["errorinstagram"]) && isset($data) && is_array($data) && !empty($data)) {
             // Write temporary content to the file, so if the instagram crashes, the content will be here.
             file_put_contents($path.'instagram-temp.json', json_encode($data));
             return $data;
