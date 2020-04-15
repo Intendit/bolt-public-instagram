@@ -78,16 +78,16 @@ class Instagram
         }
     }
 
-    public function getGraphToken(string $token, string $limit): array
+    public function getGraphToken($user, $token, $limit): array
     {
         try {
-            $url = sprintf('https://graph.instagram.com/me/media?fields=id,username,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=%s', $token);
+            $url = sprintf('https://graph.instagram.com/%s/media?fields=id,username,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=%s&limit=%s', $user, $token, $limit);
 
             $response = $this->client->get($url);
 
             return json_decode((string) $response->getBody(), true);
         } catch (RequestException $e) {
-            return array('errorinstagram' => 'Invalid token or limit.');
+            return array('errorinstagram' => 'Invalid token.');
         }
     }    
     
