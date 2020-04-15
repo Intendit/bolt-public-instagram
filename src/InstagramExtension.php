@@ -24,6 +24,7 @@ class InstagramExtension extends SimpleExtension
             'instagramgraphtoken' => 'instagramGraphTokenTwigFunction',
             'instagramlocationtoken' => 'instagramLocationTokenTwigFunction',
             'instagrammediatokenintendit' => 'instagramMediaTokenIntenditTwigFunction',
+            'instagramCodeToToken' => 'instagramCodeToTokenTwigFunction',
         ];
     }
 
@@ -106,14 +107,23 @@ class InstagramExtension extends SimpleExtension
         }
     } 
 
-    public function instagramGraphTokenTwigFunction($token, $limit)
+    public function instagramGraphTokenTwigFunction($limit = 25)
     {
-
+        $config = $this->getConfig();
         // Create a new instagram instance.
         $instagram = new Instagram();
 
         // Fetch the media feed.
-        $data = $instagram->getGraphToken($token, $limit);
+        if (isset($config['instagram_auth_token'])) {
+            $data = $instagram->getGraphToken($config['user_id'], $config['instagram_auth_token'], $limit);
+        } else {
+            if (file_exists($path.'instagram-temp.json')) {
+                $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
+                return $data;
+            } else {
+                return array('errorinstagram' => 'Invalid token.');
+            }                        
+        }
 
         $path = $_SERVER['DOCUMENT_ROOT'].'/extensions/vendor/santinopetrovic/instagram/';
         if (!isset($data["errorinstagram"]) && isset($data) && is_array($data) && !empty($data)) {
@@ -123,13 +133,13 @@ class InstagramExtension extends SimpleExtension
         } else {
             if (file_exists($path.'instagram-temp.json')) {
                 $instagramTemp = json_decode(file_get_contents($path.'instagram-temp.json'));
-                return $instagramTemp;
+                return $data;
             } else {
                 return $data;
             }
 
         }
-    }    
+    }   
     
     public function instagramTagsTokenTwigFunction($tag, $token, $limit)
     {
@@ -178,6 +188,17 @@ class InstagramExtension extends SimpleExtension
                 return $data;
             }
         }
+    }
+    
+    public function instagramCodeToTokenTwigFunction($code)
+    {
+
+        // Create a new instagram instance.
+        $instagram = new Instagram();
+
+        // Fetch the media feed.
+        // $data = $instagram->getLocationToken($location, $token, $limit);
+        return 'ost';
     }    
 
 }
