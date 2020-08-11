@@ -1,43 +1,48 @@
 Instagram
 ======================
 
-This [bolt.cm](https://bolt.cm/) extension will get raw feed data from Instagram's public API. It makes use of [Vinkla's Instagram Package](https://github.com/vinkla/instagram).
-
-### Installation
-1. Login to your Bolt installation
-2. Go to "Extend" or "Extras > Extend"
-3. Type `instagram` into the input field
-4. Click on the extension name
-5. Click on "Browse Versions"
-6. Click on "Install This Version" on the latest stable version
+This extension will get raw feed data from Instagram's basic display API. This extension is upgraded from [Vinkla's Instagram Package](https://github.com/vinkla/instagram).
 
 ### Requirements
 - PHP 7+
 - Bolt 3+
 
 ### Configuration
-Nothing to configure, just call the `{{ instagram('username') }}` twig function where `username` is the user profile you want to retreive.
-This will return an array of the latests posts in that profile.
-There are also functions called `{{ instagrammediatoken(accesstoken, limit) }}` (Gets media from instagram account linked with the accesstoken) and `{{ instagramtagstoken(tag, token, limit) }}` (Gets media from tagged posts. Remember that the access token will also need to authorize scope `public_content`). 
+Configuration requires valid access token and user id from Instagram, otherwise they will not work.
 
 ### Example
 ```
-{% for post in instagram('marutaro') %}
-  {{ dump(post) }}
-{% endfor%}
+    {% set instagramapi = instagramgraphtoken(10) %} 
+    {% for post in instagramapi.data %} 
+    {% if post.media_type == "VIDEO" %}
 
-{% for post in instagrammediatoken('access_token', '10') %}
-  {{ dump(post) }}
-{% endfor%}
+    <div class="three s-four xs-six album-bild popup-boxes insta__video video">
+        <div class="popup ajax openpopup-{{post.id}}" data-id="{{post.id}}">
+            <div class="video__icon">
+            {{ fau('play', 'solid', 'white', "24") }}
+            </div>
+            <div class="info align bottom right">                
+            </div>
+            <img src="{{image(remoteimage(url=post.thumbnail_url), 640, 640, 'c')}}"  alt="Instagram bild"/> 
+            <div class="insta__video__content popupinfo pop-child-{{ post.id }}">
+                <div>
+                    <video controls autoplay muted>
+                        <source src="{{ post.media_url }}" type="video/mp4">
+                    </video>
+                    <div class="video__caption">
+                        {{ post.caption }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% for post in instagramtagstoken('marutaro', 'access_token', '10') %}
-  {{ dump(post) }}
-{% endfor%}
+    {% else %}
+    <a class="three s-four xs-six album-bild popup image zoom" href="{{ image(remoteimage(url=post.media_url), 640, 640,'r')}}" title="{{ post.caption }}"> 
+        <div class="info align bottom right">                
+        </div>
+        <img src="{{image(remoteimage(url=post.media_url), 400, 400,'c')}}"  alt="Instagram bild"/>  
+    </a>
+    {% endif %}
+    {% endfor %}
 ```
-
-### Notes
-Because this extension uses Instagram's public API it has the following limitations (only on `instagram('username')`):
-- You can only fetch feeds from public accounts.
-- You can only retrieve the lastest 12 posts.
-
-`instagrammediatoken` and `instagramtagstoken` requires valid access token from Instagram, otherwise they will not work.
