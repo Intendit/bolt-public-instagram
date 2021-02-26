@@ -82,6 +82,19 @@ class Instagram
             return array('errorinstagram' => 'Invalid token.');
         }
     }    
+  
+    public function getGraphTokenByMe($user, $token, $limit): array
+    {
+        try {
+            $url = sprintf('https://graph.instagram.com/me/media?fields=id,username,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=%s&limit=%s', $token, $limit);
+
+            $response = $this->client->get($url);
+
+            return json_decode((string) $response->getBody(), true);
+        } catch (RequestException $e) {
+            return array('errorinstagram' => 'Invalid token.');
+        }
+    }
     
     public function getMediaTokenIntendit(string $token, string $limit): array
     {
