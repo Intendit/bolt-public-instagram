@@ -73,7 +73,7 @@ class Instagram
     public function getGraphToken($user, $token, $limit): array
     {
         try {
-            $url = sprintf('https://graph.instagram.com/%s/media?fields=id,username,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=%s&limit=%s', $user, $token, $limit);
+            $url = sprintf('https://graph.instagram.com/%s/media?fields=id,username,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=%s&limit=%s', $user, $token, $limit);
 
             $response = $this->client->get($url);
 
@@ -86,7 +86,7 @@ class Instagram
     public function getGraphTokenByMe($user, $token, $limit): array
     {
         try {
-            $url = sprintf('https://graph.instagram.com/me/media?fields=id,username,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=%s&limit=%s', $token, $limit);
+            $url = sprintf('https://graph.instagram.com/me/media?fields=id,username,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=%s&limit=%s', $token, $limit);
 
             $response = $this->client->get($url);
 
