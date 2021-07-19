@@ -174,7 +174,6 @@ class InstagramExtension extends SimpleExtension
 
     public function instagramTagsTokenTwigFunction($tag, $token, $limit)
     {
-
         // Create a new instagram instance.
         $instagram = new Instagram();
 
